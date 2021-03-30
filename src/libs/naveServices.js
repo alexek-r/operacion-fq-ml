@@ -96,7 +96,6 @@
             for(let i = 0; i < satellites.length; i++){
                 for(let j = 0; j < satellites[i].message.length; j++){
                     if(aux[a] === "" && a === j){
-   
                         aux[a] = satellites[i].message[j];
    
                     }

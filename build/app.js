@@ -1,5 +1,7 @@
 "use strict";
 
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -16,8 +18,6 @@ var _nave = _interopRequireDefault(require("./routes/nave.routes"));
 var _auth = _interopRequireDefault(require("./routes/auth.routes"));
 
 var _init = require("./libs/init");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 //Importo los Endpoints
 var app = (0, _express["default"])(); //Creo los roles
