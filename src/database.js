@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
+require("dotenv").config();
 
-
-mongoose.connect("mongodb://localhost/operacionmlbd" , {
+mongoose.connect(process.env.MONGODB_URI, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
     useFindAndModify: true,

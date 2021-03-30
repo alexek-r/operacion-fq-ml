@@ -33,7 +33,7 @@ export const signUp = async (req,res) => {
     //Guardo el usuario en la bd.
     const savedUser = await newUser.save();
 
-    const token = jwt.sign({id: savedUser._id}, config.SECRET, {
+    const token = jwt.sign({id: savedUser._id}, process.env.SECRET, {
         expiresIn: 86400 // 24 hours
     })
 

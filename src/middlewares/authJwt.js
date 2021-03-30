@@ -13,7 +13,8 @@ try {
     console.log(token);
 
     //Decodifico el token que dentro tiene el id del usuario.
-    const decoded = jwt.verify(token,config.SECRET);
+    console.log("SECRET", process.env.SECRET);
+    const decoded = jwt.verify(token,process.env.SECRET);
     //Lo guardo en el request para usarlo en los demas middlewares.
     req.userId = decoded.id;
 

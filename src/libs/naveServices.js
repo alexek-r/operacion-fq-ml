@@ -143,10 +143,6 @@
             
         }
 
-        for(let x of aux){
-            console.log("TEST",x.message);
-        }
-
         p = 0;
             console.log("INICIAL",p);
 
