@@ -27,15 +27,15 @@ app.set("pkg", _package["default"]); //Para poder ver las pegadas que se realiza
 
 app.use((0, _morgan["default"])('dev')); //Para que entienda en formato json
 
-app.use(_express["default"].json());
-app.get("/", function (req, res) {
-  res.json({
-    name: app.get("pkg").name,
-    author: app.get("pkg").author,
-    description: app.get("pkg").description,
-    version: app.get("pkg").version
-  });
-});
+app.use(_express["default"].json()); // app.get("/", (req,res) => {
+//     res.json({
+//         name: app.get("pkg").name,
+//         author: app.get("pkg").author,
+//         description: app.get("pkg").description,
+//         version: app.get("pkg").version
+//     });
+// })
+
 app.use("/api", _nave["default"]);
 app.use("/api/auth", _auth["default"]);
 var _default = app;

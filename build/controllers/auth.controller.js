@@ -89,7 +89,7 @@ var signUp = /*#__PURE__*/function () {
             savedUser = _context.sent;
             token = _jsonwebtoken["default"].sign({
               id: savedUser._id
-            }, _config["default"].SECRET, {
+            }, process.env.SECRET, {
               expiresIn: 86400 // 24 hours
 
             }); //retorno el token.
@@ -165,7 +165,7 @@ var signIn = /*#__PURE__*/function () {
             //Si es todo correcto retorno el token del usuario
             token = _jsonwebtoken["default"].sign({
               id: userFound._id
-            }, _config["default"].SECRET, {
+            }, process.env.SECRET, {
               expiresIn: 86400 //24hs
 
             });

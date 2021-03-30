@@ -58,7 +58,7 @@ export const signIn = async (req,res) => {
     if(!matchPassword) return res.status(401).json({token: null, message: "Invalid password"});
 
     //Si es todo correcto retorno el token del usuario
-    const token = jwt.sign({id: userFound._id}, config.SECRET, {
+    const token = jwt.sign({id: userFound._id}, process.env.SECRET, {
         expiresIn: 86400 //24hs
     })
 

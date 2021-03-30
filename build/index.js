@@ -6,7 +6,13 @@ var _app = _interopRequireDefault(require("./app"));
 
 require("./database");
 
-//Dejo la app escuchando en el puerto
-_app["default"].listen(3000);
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
 
-console.log("server listen on port", 3000);
+//Dejo la app escuchando en el puerto
+_app["default"].set("port", process.env.PORT || 3000);
+
+_app["default"].listen(_app["default"].get("port"), function () {
+  console.log("Server listen on port", _app["default"].get("port"));
+});

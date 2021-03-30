@@ -44,20 +44,21 @@ var verifyToken = /*#__PURE__*/function () {
           case 4:
             console.log(token); //Decodifico el token que dentro tiene el id del usuario.
 
-            decoded = _jsonwebtoken["default"].verify(token, _config["default"].SECRET); //Lo guardo en el request para usarlo en los demas middlewares.
+            console.log("SECRET", process.env.SECRET);
+            decoded = _jsonwebtoken["default"].verify(token, process.env.SECRET); //Lo guardo en el request para usarlo en los demas middlewares.
 
             req.userId = decoded.id; //Busco el usuario y verifico que exista
 
-            _context.next = 9;
+            _context.next = 10;
             return _User["default"].findById(req.userId, {
               password: 0
             });
 
-          case 9:
+          case 10:
             user = _context.sent;
 
             if (user) {
-              _context.next = 12;
+              _context.next = 13;
               break;
             }
 
@@ -65,24 +66,24 @@ var verifyToken = /*#__PURE__*/function () {
               message: "No user found"
             }));
 
-          case 12:
+          case 13:
             next();
-            _context.next = 18;
+            _context.next = 19;
             break;
 
-          case 15:
-            _context.prev = 15;
+          case 16:
+            _context.prev = 16;
             _context.t0 = _context["catch"](0);
             return _context.abrupt("return", res.status(401).json({
               message: "Unauthorized"
             }));
 
-          case 18:
+          case 19:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 15]]);
+    }, _callee, null, [[0, 16]]);
   }));
 
   return function verifyToken(_x, _x2, _x3) {
