@@ -1,0 +1,42 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _express = _interopRequireDefault(require("express"));
+
+var _morgan = _interopRequireDefault(require("morgan"));
+
+var _package = _interopRequireDefault(require("../package.json"));
+
+var _nave = _interopRequireDefault(require("./routes/nave.routes"));
+
+var _auth = _interopRequireDefault(require("./routes/auth.routes"));
+
+var _init = require("./libs/init");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+//Importo los Endpoints
+var app = (0, _express["default"])(); //Creo los roles
+
+(0, _init.createRoles)();
+app.set("pkg", _package["default"]); //Para poder ver las pegadas que se realizan en consola.
+
+app.use((0, _morgan["default"])('dev')); //Para que entienda en formato json
+
+app.use(_express["default"].json());
+app.get("/", function (req, res) {
+  res.json({
+    name: app.get("pkg").name,
+    author: app.get("pkg").author,
+    description: app.get("pkg").description,
+    version: app.get("pkg").version
+  });
+});
+app.use("/api", _nave["default"]);
+app.use("/api/auth", _auth["default"]);
+var _default = app;
+exports["default"] = _default;
