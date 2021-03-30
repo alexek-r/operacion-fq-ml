@@ -19,14 +19,14 @@ app.use(morgan('dev'));
 //Para que entienda en formato json
 app.use(express.json());
 
-app.get("/", (req,res) => {
-    res.json({
-        name: app.get("pkg").name,
-        author: app.get("pkg").author,
-        description: app.get("pkg").description,
-        version: app.get("pkg").version
-    });
-})
+// app.get("/", (req,res) => {
+//     res.json({
+//         name: app.get("pkg").name,
+//         author: app.get("pkg").author,
+//         description: app.get("pkg").description,
+//         version: app.get("pkg").version
+//     });
+// })
 
 app.use("/api",naveRoutes);
 app.use("/api/auth",authRoutes);
