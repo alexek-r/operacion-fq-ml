@@ -1,9 +1,9 @@
 # API: vista general
 
-![](imgapi)
+![](https://github.com/alexek-r/operacion-fq-ml/blob/main/doc/API2.png)
 
 
-## Estructura del proyecto:
+## Estructura del proyecto: Arquitectura en base a capas
 
 - **doc**: se almacena toda la documentación relacionada a la API.
 
