@@ -181,5 +181,5 @@ Ejemplo response:
 -----------
 ### Mas informacion del proyecto
 
-- Estructura de la API: editarLink
+- Estructura de la API: https://github.com/alexek-r/operacion-fq-ml/blob/main/doc/API.md
 
