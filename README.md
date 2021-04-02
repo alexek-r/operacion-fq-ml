@@ -54,6 +54,7 @@ npm run test
 ```
 https://meli-operacionfdq.herokuapp.com/
 ```
+- _Api hosteada en Heroku, y la base de datos en MongoDB Atlas_
 
 ## Crear un usuario o logearse
 - _Para realizar las pegadas necesitas registrarte o logearte ya que utiliza tokens y roles_
