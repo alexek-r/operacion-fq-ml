@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.signIn = exports.signUp = void 0;
+exports.signInAction = exports.signUp = void 0;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -15,25 +15,24 @@ var _User = _interopRequireDefault(require("../models/User"));
 
 var _jsonwebtoken = _interopRequireDefault(require("jsonwebtoken"));
 
-var _config = _interopRequireDefault(require("../config"));
-
 var _Role = _interopRequireDefault(require("../models/Role"));
 
 /**
- * Registro de usuario
- * @param {Object} req 
- * @param {Object} res 
+ * Creacion de cuenta
+ * @param {String} username 
+ * @param {String} password 
+ * @param {String} email 
+ * @param {String} roles 
+ * @returns 
  */
 var signUp = /*#__PURE__*/function () {
-  var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(req, res) {
-    var _req$body, username, password, email, roles, newUser, foundRoles, role, savedUser, token;
-
+  var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(username, password, email, roles) {
+    var newUser, foundRoles, role, savedUser, token;
     return _regenerator["default"].wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            //Destructuring
-            _req$body = req.body, username = _req$body.username, password = _req$body.password, email = _req$body.email, roles = _req$body.roles;
+            _context.prev = 0;
             _context.t0 = _User["default"];
             _context.t1 = username;
             _context.t2 = email;
@@ -87,26 +86,51 @@ var signUp = /*#__PURE__*/function () {
 
           case 22:
             savedUser = _context.sent;
+
+            if (!savedUser) {
+              _context.next = 28;
+              break;
+            }
+
             token = _jsonwebtoken["default"].sign({
               id: savedUser._id
             }, process.env.SECRET, {
               expiresIn: 86400 // 24 hours
 
-            }); //retorno el token.
-
-            res.status(200).json({
-              token: token
+            });
+            return _context.abrupt("return", {
+              status: true,
+              token: token,
+              message: "User created successfully"
             });
 
-          case 25:
+          case 28:
+            return _context.abrupt("return", {
+              status: false,
+              message: "Error creating user"
+            });
+
+          case 29:
+            _context.next = 34;
+            break;
+
+          case 31:
+            _context.prev = 31;
+            _context.t5 = _context["catch"](0);
+            return _context.abrupt("return", {
+              status: false,
+              message: "Error in system"
+            });
+
+          case 34:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee);
+    }, _callee, null, [[0, 31]]);
   }));
 
-  return function signUp(_x, _x2) {
+  return function signUp(_x, _x2, _x3, _x4) {
     return _ref.apply(this, arguments);
   };
 }();
@@ -120,8 +144,8 @@ var signUp = /*#__PURE__*/function () {
 
 exports.signUp = signUp;
 
-var signIn = /*#__PURE__*/function () {
-  var _ref2 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(req, res) {
+var signInAction = /*#__PURE__*/function () {
+  var _ref2 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(email, password) {
     var userFound, matchPassword, token;
     return _regenerator["default"].wrap(function _callee2$(_context2) {
       while (1) {
@@ -129,7 +153,7 @@ var signIn = /*#__PURE__*/function () {
           case 0:
             _context2.next = 2;
             return _User["default"].findOne({
-              email: req.body.email
+              email: email
             }).populate('roles');
 
           case 2:
@@ -140,13 +164,15 @@ var signIn = /*#__PURE__*/function () {
               break;
             }
 
-            return _context2.abrupt("return", res.status(400).json({
-              message: 'User Not Found'
-            }));
+            return _context2.abrupt("return", {
+              status: false,
+              code: 400,
+              message: 'User not found'
+            });
 
           case 5:
             _context2.next = 7;
-            return _User["default"].comparePassword(req.body.password, userFound.password);
+            return _User["default"].comparePassword(password, userFound.password);
 
           case 7:
             matchPassword = _context2.sent;
@@ -156,12 +182,22 @@ var signIn = /*#__PURE__*/function () {
               break;
             }
 
-            return _context2.abrupt("return", res.status(401).json({
+            return _context2.abrupt("return", {
+              status: false,
+              code: 401,
               token: null,
-              message: "Invalid password"
-            }));
+              message: 'Invalid password'
+            });
 
           case 10:
+            if (process.env.SECRET) {
+              _context2.next = 12;
+              break;
+            }
+
+            throw new Error("Token secret must be provide!");
+
+          case 12:
             //Si es todo correcto retorno el token del usuario
             token = _jsonwebtoken["default"].sign({
               id: userFound._id
@@ -169,11 +205,14 @@ var signIn = /*#__PURE__*/function () {
               expiresIn: 86400 //24hs
 
             });
-            res.status(200).json({
-              token: token
+            return _context2.abrupt("return", {
+              status: true,
+              code: 200,
+              token: token,
+              message: 'Welcome ' + userFound.username
             });
 
-          case 12:
+          case 14:
           case "end":
             return _context2.stop();
         }
@@ -181,9 +220,9 @@ var signIn = /*#__PURE__*/function () {
     }, _callee2);
   }));
 
-  return function signIn(_x3, _x4) {
+  return function signInAction(_x5, _x6) {
     return _ref2.apply(this, arguments);
   };
 }();
 
-exports.signIn = signIn;
+exports.signInAction = signInAction;
