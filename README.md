@@ -15,6 +15,13 @@ cd operacion-fq-ml
 ```
 
 - _Renombra el archivo .env.example a .env y configurarlo con los datos del servidor_
+ ```
+MONGODB_URI=mongodb+srv://TuBdURL
+SECRET=ClaveDeSeguridadToken
+SATELLITE_ONE=kenobi
+SATELLITE_TWO=skywalker
+SATELLITE_THREE=sato
+```
 
 - _Instala las dependencias_
 
@@ -181,5 +188,5 @@ Ejemplo response:
 -----------
 ### Mas informacion del proyecto
 
-- Estructura de la API: https://github.com/alexek-r/operacion-fq-ml/blob/main/doc/API.md
+- Estructura de la API: (https://github.com/alexek-r/operacion-fq-ml/blob/main/doc/API.md)
 
