@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.satelliteFindAndUpdate = exports.getSatellitesInformation = exports.UpdateOne = exports.getOne = void 0;
+exports.formatDocumentSatellites = exports.satelliteFindAndUpdate = exports.getSatellitesInformation = exports.UpdateOne = exports.getOne = void 0;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -116,7 +116,7 @@ var verifySatellitesCompleteInformation = /*#__PURE__*/function () {
             query = {
               distance: {
                 $exists: true,
-                $type: 'double'
+                $type: ['double', 'int']
               },
               message: {
                 $exists: true,
@@ -215,6 +215,8 @@ var formatDocumentSatellites = function formatDocumentSatellites(values) {
   };
   return document;
 };
+
+exports.formatDocumentSatellites = formatDocumentSatellites;
 
 var satelliteFindAndUpdate = /*#__PURE__*/function () {
   var _ref5 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee5(name, content) {

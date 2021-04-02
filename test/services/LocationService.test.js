@@ -4,7 +4,7 @@ var assert = require('assert');
 
 describe('LocationService Testing', function () {
 
-    describe('getLocation', function () {
+    describe('Test algoritmo getLocation', function () {
 
         it('Location resulado correcto con ubicacion con float', async function () {
             let arrayTest = [[ 0.0,  0.0, 10.0],

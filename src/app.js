@@ -2,9 +2,9 @@ import express from 'express';
 import morgan from 'morgan';
 import pkg from '../package.json';
 //Importo los Endpoints
-import rebelIntelligenceRoutes from './routes/RebelIntelligence.routes';
+import rebelIntelligenceRoutes from './routes/rebelIntelligence.routes';
 import authRoutes from './routes/auth.routes';
-import { createRoles, createSatellites} from './scripts/init'
+import { createRoles, createSatellites} from './libs/init'
 
 const app = express();
 

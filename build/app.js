@@ -13,11 +13,11 @@ var _morgan = _interopRequireDefault(require("morgan"));
 
 var _package = _interopRequireDefault(require("../package.json"));
 
-var _RebelIntelligence = _interopRequireDefault(require("./routes/RebelIntelligence.routes"));
+var _rebelIntelligence = _interopRequireDefault(require("./routes/rebelIntelligence.routes"));
 
 var _auth = _interopRequireDefault(require("./routes/auth.routes"));
 
-var _init = require("./scripts/init");
+var _init = require("./libs/init");
 
 //Importo los Endpoints
 var app = (0, _express["default"])(); //Creo los roles
@@ -38,7 +38,7 @@ app.get("/", function (req, res) {
     version: app.get("pkg").version
   });
 });
-app.use("/api", _RebelIntelligence["default"]);
+app.use("/api", _rebelIntelligence["default"]);
 app.use("/api/auth", _auth["default"]);
 var _default = app;
 exports["default"] = _default;

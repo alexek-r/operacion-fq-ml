@@ -39,7 +39,7 @@ const verifySatellitesCompleteInformation = async () => {
         distance => verifico que exista el campo y que sea double (ejemplo: distance: 100.0)
         message => verifico que exista el campo, que sea array y no este vacio (ejemplo: message: ["hola","probando"])
     */
-    let query = { distance: {$exists: true, $type:'double'}, message: { $exists: true, $type:'array', $ne: [] }};
+    let query = { distance: {$exists: true, $type: ['double', 'int']}, message: { $exists: true, $type:'array', $ne: [] }};
     let count = await Satellite.find(query).count();
 
 
@@ -60,7 +60,7 @@ const getSatellitesInformation = async () => {
 
     if(verifyResult){
         let values = await Satellite.find({});
-
+     
         if(values.length === 3){
            response = formatDocumentSatellites(values);
         }
@@ -112,6 +112,6 @@ const satelliteFindAndUpdate = async (name, content) =>{
     return result;
 }
 
-export {getOne,UpdateOne,getSatellitesInformation,satelliteFindAndUpdate}
+export {getOne,UpdateOne,getSatellitesInformation,satelliteFindAndUpdate,formatDocumentSatellites}
 
 
