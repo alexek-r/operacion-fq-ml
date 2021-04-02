@@ -23,22 +23,20 @@ var checkRolesExisted = /*#__PURE__*/function () {
         switch (_context.prev = _context.next) {
           case 0:
             if (!req.body.roles) {
-              _context.next = 9;
+              _context.next = 8;
               break;
             }
 
-            console.log(_Role.ROLES); //Verifico si alguno de los roles ingresados no existe
-
             i = 0;
 
-          case 3:
+          case 2:
             if (!(i < req.body.roles.length)) {
-              _context.next = 9;
+              _context.next = 8;
               break;
             }
 
             if (_Role.ROLES.includes(req.body.roles[i])) {
-              _context.next = 6;
+              _context.next = 5;
               break;
             }
 
@@ -46,15 +44,15 @@ var checkRolesExisted = /*#__PURE__*/function () {
               message: "Role ".concat(req.body.roles[i], " does not exists")
             }));
 
-          case 6:
+          case 5:
             i++;
-            _context.next = 3;
+            _context.next = 2;
             break;
 
-          case 9:
+          case 8:
             next();
 
-          case 10:
+          case 9:
           case "end":
             return _context.stop();
         }

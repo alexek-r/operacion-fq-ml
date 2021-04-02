@@ -13,13 +13,9 @@ var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/
 
 var _jsonwebtoken = _interopRequireDefault(require("jsonwebtoken"));
 
-var _config = _interopRequireDefault(require("../config"));
-
 var _User = _interopRequireDefault(require("../models/User"));
 
 var _Role = _interopRequireDefault(require("../models/Role"));
-
-var _express = require("express");
 
 var verifyToken = /*#__PURE__*/function () {
   var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(req, res, next) {
@@ -30,7 +26,7 @@ var verifyToken = /*#__PURE__*/function () {
           case 0:
             _context.prev = 0;
             //Verifico que contenga el header con el token
-            token = req.headers['x-access-token'];
+            token = req.headers['ml-access-token'];
 
             if (token) {
               _context.next = 4;
@@ -42,23 +38,21 @@ var verifyToken = /*#__PURE__*/function () {
             }));
 
           case 4:
-            console.log(token); //Decodifico el token que dentro tiene el id del usuario.
-
-            console.log("SECRET", process.env.SECRET);
+            //Decodifico el token que dentro tiene el id del usuario.
             decoded = _jsonwebtoken["default"].verify(token, process.env.SECRET); //Lo guardo en el request para usarlo en los demas middlewares.
 
             req.userId = decoded.id; //Busco el usuario y verifico que exista
 
-            _context.next = 10;
+            _context.next = 8;
             return _User["default"].findById(req.userId, {
               password: 0
             });
 
-          case 10:
+          case 8:
             user = _context.sent;
 
             if (user) {
-              _context.next = 13;
+              _context.next = 11;
               break;
             }
 
@@ -66,24 +60,24 @@ var verifyToken = /*#__PURE__*/function () {
               message: "No user found"
             }));
 
-          case 13:
+          case 11:
             next();
-            _context.next = 19;
+            _context.next = 17;
             break;
 
-          case 16:
-            _context.prev = 16;
+          case 14:
+            _context.prev = 14;
             _context.t0 = _context["catch"](0);
             return _context.abrupt("return", res.status(401).json({
               message: "Unauthorized"
             }));
 
-          case 19:
+          case 17:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 16]]);
+    }, _callee, null, [[0, 14]]);
   }));
 
   return function verifyToken(_x, _x2, _x3) {
@@ -114,35 +108,33 @@ var isGeneral = /*#__PURE__*/function () {
 
           case 5:
             roles = _context2.sent;
-            console.log(roles); //Recorro los roles a ver si contiene el de general
-
             i = 0;
 
-          case 8:
+          case 7:
             if (!(i < roles.length)) {
-              _context2.next = 15;
+              _context2.next = 14;
               break;
             }
 
             if (!(roles[i].name === "general")) {
-              _context2.next = 12;
+              _context2.next = 11;
               break;
             }
 
             next();
             return _context2.abrupt("return");
 
-          case 12:
+          case 11:
             i++;
-            _context2.next = 8;
+            _context2.next = 7;
             break;
 
-          case 15:
+          case 14:
             return _context2.abrupt("return", res.status(403).json({
               message: 'Required general rol'
             }));
 
-          case 16:
+          case 15:
           case "end":
             return _context2.stop();
         }

@@ -1,20 +1,17 @@
 import jwt from 'jsonwebtoken';
-import config from "../config";
 import User from "../models/User";
 import Role from "../models/Role";
-import { json } from 'express';
 
 export const verifyToken = async (req, res, next) =>{
 try {
 
     //Verifico que contenga el header con el token
-    const token = req.headers['x-access-token'];
+    const token = req.headers['ml-access-token'];
     if(!token) return res.status(403).json({message: 'Token must be provide'});
-    console.log(token);
 
     //Decodifico el token que dentro tiene el id del usuario.
-    console.log("SECRET", process.env.SECRET);
     const decoded = jwt.verify(token,process.env.SECRET);
+
     //Lo guardo en el request para usarlo en los demas middlewares.
     req.userId = decoded.id;
 
@@ -37,7 +34,6 @@ export const isGeneral = async (req, res, next) => {
     //Guarda todos los roles que contenga el usuario
     const roles = await Role.find({_id: {$in: user.roles}});
 
-    console.log(roles);
 
     //Recorro los roles a ver si contiene el de general
     for(let i = 0; i< roles.length; i++ ){

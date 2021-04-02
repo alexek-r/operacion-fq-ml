@@ -8,7 +8,6 @@ export const checkRolesExisted = async (req,res,next) => {
     //Chequeo si le agrego roles en el signUp
     if(req.body.roles){
 
-        console.log(ROLES);
         //Verifico si alguno de los roles ingresados no existe
         for(let i = 0 ; i< req.body.roles.length ; i++){
             if(!ROLES.includes(req.body.roles[i])){

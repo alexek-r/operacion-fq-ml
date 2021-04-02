@@ -2,14 +2,16 @@ import express from 'express';
 import morgan from 'morgan';
 import pkg from '../package.json';
 //Importo los Endpoints
-import naveRoutes from './routes/nave.routes';
-import authRoutes from './routes/auth.routes';
-import { createRoles } from './libs/init'
+import rebelIntelligenceRoutes from './routes/RebelIntelligence.routes';
+import authRoutes from './routes/Auth.routes';
+import { createRoles, createSatellites} from './scripts/init'
 
 const app = express();
 
 //Creo los roles
 createRoles();
+//Creo los satellites
+createSatellites();
 
 app.set("pkg",pkg);
 
@@ -27,8 +29,7 @@ app.get("/", (req,res) => {
         version: app.get("pkg").version
     });
 })
-
-app.use("/api",naveRoutes);
+app.use("/api",rebelIntelligenceRoutes);
 app.use("/api/auth",authRoutes);
 
 export default app;
