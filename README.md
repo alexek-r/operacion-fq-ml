@@ -1,3 +1,4 @@
+# Operacion Fuego de Quasar
 ## Para el desarrollo de la API se utilizó:
 
 - NodeJS
@@ -61,7 +62,7 @@ Ejemplo request:
 	"username": "user",
 	"email": "email@email.com",
 	"password":"password",
-    "roles": ["general"]
+    	"roles": ["general"]
 }
 ```
 Ejemplo response:
@@ -180,5 +181,5 @@ Ejemplo response:
 -----------
 ### Mas informacion del proyecto
 
-- Estructura de la API: editarLink
+- Estructura de la API: https://github.com/alexek-r/operacion-fq-ml/blob/main/doc/API.md
 
