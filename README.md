@@ -171,8 +171,8 @@ Ejemplo response:
 ```
 
 ### TopSecret Split
--  _GET -> /api/topsecret_split/
--  Deben estar los 3 satellites con la informacion cargada correctamente
+-  _GET -> /api/topsecret_split/_
+-  Deben estar los 3 satellites con la informacion cargada correctamente, sino respondera _"No hay suficiente informacion"_
 ```
 https://meli-operacionfdq.herokuapp.com/api/topsecret_split/
 ```
