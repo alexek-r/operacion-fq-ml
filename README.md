@@ -58,7 +58,7 @@ https://meli-operacionfdq.herokuapp.com/
 
 ## Crear un usuario o logearse
 - _Para realizar las pegadas necesitas registrarte o logearte ya que utiliza tokens y roles_
-##### Registro de usuario 
+### Registro de usuario 
 -  _POST -> /api/auth/signup_
 Roles actuales "tripulante" y "general"
 ```
@@ -81,7 +81,7 @@ Ejemplo response:
 }
 ```
 
-##### Login de usuario
+### Login de usuario
 -  _POST -> /api/auth/signin_
 ```
 https://meli-operacionfdq.herokuapp.com/api/auth/signin
@@ -103,7 +103,7 @@ Ejemplo response:
 
 --------
 ### Rutas del ejercicio
-##### Aclaracion
+### Aclaracion
 - Solo pueden acceder a esta informacion si tiene el rol de "general"
 - Se debe colocar en los headers la siguiente informacion
 ```
@@ -111,7 +111,7 @@ Ejemplo response:
 "Content-Type": "application/json"
 ```
 
-##### TopSecret
+### TopSecret
 -  _POST -> /api/topsecret/_
 ```
 https://meli-operacionfdq.herokuapp.com/api/topsecret/
@@ -149,7 +149,7 @@ Ejemplo response: (RESPONSE CODE 200)
 }
 ```
 
-##### TopSecret Split
+### TopSecret Split
 -  _POST -> /api/topsecret_split/{satellite_name}_
 -  Satelites en servicio: kenobi, skywalker, sato
 ```
@@ -170,7 +170,7 @@ Ejemplo response:
 }
 ```
 
-##### TopSecret Split
+### TopSecret Split
 -  _GET -> /api/topsecret_split/
 -  Deben estar los 3 satellites con la informacion cargada correctamente
 ```
