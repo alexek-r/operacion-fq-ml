@@ -1,3 +1,4 @@
+# Operacion Fuego de Quasar
 ## Para el desarrollo de la API se utilizó:
 
 - NodeJS
@@ -61,7 +62,7 @@ Ejemplo request:
 	"username": "user",
 	"email": "email@email.com",
 	"password":"password",
-    "roles": ["general"]
+    	"roles": ["general"]
 }
 ```
 Ejemplo response:
