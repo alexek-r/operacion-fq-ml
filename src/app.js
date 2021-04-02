@@ -1,9 +1,8 @@
 import express from 'express';
 import morgan from 'morgan';
 import pkg from '../package.json';
-//Importo los Endpoints
-import rebelIntelligenceRoutes from './routes/rebelIntelligence.routes';
-import authRoutes from './routes/auth.routes';
+import RebelIntelligenceRoutes from './routes/RebelIntelligenceRoutes'
+import AuthRoutes from './routes/AuthRoutes';
 import { createRoles, createSatellites} from './libs/init'
 
 const app = express();
@@ -29,7 +28,7 @@ app.get("/", (req,res) => {
         version: app.get("pkg").version
     });
 })
-app.use("/api",rebelIntelligenceRoutes);
-app.use("/api/auth",authRoutes);
+app.use("/api",RebelIntelligenceRoutes);
+app.use("/api/auth",AuthRoutes);
 
 export default app;
