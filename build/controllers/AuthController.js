@@ -13,12 +13,6 @@ var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"))
 
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
 
-var _User = _interopRequireDefault(require("../models/User"));
-
-var _jsonwebtoken = _interopRequireDefault(require("jsonwebtoken"));
-
-var _Role = _interopRequireDefault(require("../models/Role"));
-
 var AuthService = _interopRequireWildcard(require("../services/AuthService"));
 
 /**

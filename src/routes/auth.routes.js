@@ -1,6 +1,8 @@
 import {Router} from 'express';
 import * as AuthController from '../controllers/AuthController';
 import {verifySignUp} from "../middlewares";
+
+
 const router = Router();
 
 //EndPoint para login

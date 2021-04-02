@@ -15,7 +15,7 @@ var _package = _interopRequireDefault(require("../package.json"));
 
 var _RebelIntelligence = _interopRequireDefault(require("./routes/RebelIntelligence.routes"));
 
-var _Auth = _interopRequireDefault(require("./routes/Auth.routes"));
+var _auth = _interopRequireDefault(require("./routes/auth.routes"));
 
 var _init = require("./scripts/init");
 
@@ -39,6 +39,6 @@ app.get("/", function (req, res) {
   });
 });
 app.use("/api", _RebelIntelligence["default"]);
-app.use("/api/auth", _Auth["default"]);
+app.use("/api/auth", _auth["default"]);
 var _default = app;
 exports["default"] = _default;
